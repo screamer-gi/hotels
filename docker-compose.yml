@@ -1,0 +1,47 @@
+version: '2'
+services:
+  php:
+    build: docker/php
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql
+
+  nginx:
+    build: docker/nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www:delegated
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - php
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=hotels
+      - MYSQL_ROOT_PASSWORD=hotels
+      - MYSQL_PORT=3306
+      - MYSQL_USER=hotels
+      - MYSQL_PASSWORD=hotels
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+    restart: always
+    depends_on:
+      - mysql
+
+volumes:
+  db-data:
+    driver: local
