@@ -1,0 +1,25 @@
+{
+    "name": "screamer/hotels",
+    "type": "project",
+    "authors": [
+        {
+            "name": "George Istomin",
+            "email": "gi.screamer@gmail.com"
+        }
+    ],
+    "require": {
+        "php" : "^7.2",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hotel\\": "src/Hotel/",
+            "Common\\": "src/Common/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
