@@ -4,11 +4,14 @@ use Hotel\HelloWorld;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-header('Cache-Control: no-cache');
+$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder->useAutowiring(false);
+$containerBuilder->useAnnotations(false);
+$containerBuilder->addDefinitions([
+    HelloWorld::class => \DI\create(HelloWorld::class)
+]);
 
-phpinfo();
+$container = $containerBuilder->build();
 
-$helloWorld = new HelloWorld();
+$helloWorld = $container->get(HelloWorld::class);
 $helloWorld->announce();
-
-echo '';
