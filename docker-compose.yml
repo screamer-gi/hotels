@@ -6,7 +6,8 @@ services:
       - .:/var/www
     depends_on:
       - mysql
-
+    expose:
+      - "9001"
   nginx:
     build: docker/nginx
     ports:
