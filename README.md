@@ -1,7 +1,7 @@
 # hotels
 Hotels test task
 
-##Installation
+## Installation
 
 - Run composer: `composer install`
 - Create database `hotels` with username `hotels` and password `hotels`

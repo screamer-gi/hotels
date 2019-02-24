@@ -1,5 +1,7 @@
 <?php
 
+use Common\DbFactory;
+use Common\DbInterface;
 use Common\LayoutMiddleware;
 use DI\ContainerBuilder;
 use FastRoute\RouteCollector;
@@ -15,6 +17,7 @@ use Zend\Diactoros\ServerRequestFactory;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use function DI\autowire;
 use function DI\create;
+use function DI\factory;
 use function FastRoute\simpleDispatcher;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
@@ -23,6 +26,7 @@ $containerBuilder = new ContainerBuilder();
 $containerBuilder->useAutowiring(true);
 $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions([
+    DbInterface::class => factory(DbFactory::class),
     PhpRenderer::class => create()->constructor(__DIR__ . '/../templates'),
     ResponseInterface::class => create(Response::class),
     ResponseFactoryInterface::class => create(ResponseFactory::class),

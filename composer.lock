@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e02693b89336da8cd2b85ff8b87ef04",
+    "content-hash": "9f8afbe4a01ee3d86256c36ba84d3e17",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -555,6 +555,54 @@
                 "psr-7"
             ],
             "time": "2018-08-11T07:23:25+00:00"
+        },
+        {
+            "name": "morris/lessql",
+            "version": "v0.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morris/lessql.git",
+                "reference": "338966185fc052e7ee769360d19950cf90c0fd42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morris/lessql/zipball/338966185fc052e7ee769360d19950cf90c0fd42",
+                "reference": "338966185fc052e7ee769360d19950cf90c0fd42",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.4"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Morris Brodersen",
+                    "homepage": "https://morrisbrodersen.de"
+                }
+            ],
+            "description": "LessQL: The agile PHP ORM alternative",
+            "homepage": "https://github.com/morris/lessql",
+            "keywords": [
+                "database",
+                "notorm",
+                "orm",
+                "pdo",
+                "sql"
+            ],
+            "time": "2018-01-27T13:18:21+00:00"
         },
         {
             "name": "nikic/fast-route",
