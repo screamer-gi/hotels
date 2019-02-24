@@ -1,0 +1,29 @@
+paths:
+    migrations:
+        Migration: '%%PHINX_CONFIG_DIR%%/src/Migration'
+    seeds:
+        Seed: '%%PHINX_CONFIG_DIR%%/src/Seed'
+
+environments:
+    default_migration_table: phinxlog
+    default_database: development
+
+    development:
+        adapter: mysql
+        host: mysql
+        name: hotels
+        user: hotels
+        pass: 'hotels'
+        port: 3306
+        charset: utf8
+
+    testing:
+        adapter: mysql
+        host: mysql
+        name: hotels_test
+        user: hotels
+        pass: 'hotels'
+        port: 3306
+        charset: utf8
+
+version_order: creation
