@@ -7,6 +7,7 @@ use DI\ContainerBuilder;
 use FastRoute\RouteCollector;
 use Middlewares\FastRoute;
 use Middlewares\RequestHandler;
+use Middlewares\Whoops;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Relay\Relay;
@@ -39,6 +40,7 @@ $container = $containerBuilder->build();
 $routes = simpleDispatcher(function (RouteCollector $r) {
 });
 
+$middlewareQueue[] = new Whoops();
 /** @noinspection PhpUnhandledExceptionInspection */
 $middlewareQueue[] = $container->get(LayoutMiddleware::class);
 $middlewareQueue[] = new FastRoute($routes);

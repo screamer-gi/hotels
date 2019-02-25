@@ -8,12 +8,13 @@
         }
     ],
     "require": {
-        "php" : "^7.2",
+        "php": "^7.2",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-pdo": "*",
         "middlewares/fast-route": "^1.2",
         "middlewares/request-handler": "^1.4",
+        "middlewares/whoops": "^1.2",
         "morris/lessql": "^0.3.5",
         "php-di/php-di": "^6.0",
         "relay/relay": "2.x@dev",
