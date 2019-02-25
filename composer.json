@@ -17,6 +17,7 @@
         "php-di/php-di": "^6.0",
         "relay/relay": "2.x@dev",
         "robmorgan/phinx": "^0.10.6",
+        "slim/php-view": "^2.2",
         "zendframework/zend-diactoros": "^2.1",
         "zendframework/zend-httphandlerrunner": "^1.1"
     },
