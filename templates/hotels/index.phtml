@@ -1,0 +1,50 @@
+<?php
+/** @var Row[] $list */
+
+use LessQL\Row;
+?>
+<script type="application/javascript">
+    function post(path, params, method) {
+        method = method || "post";
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<a class="btn btn-primary" href="/add" role="button">Add</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+
+    <?php foreach ($list as $row): ?>
+    <tr>
+        <td><?= $row->date_start ?></td>
+        <td><?= $row->date_end ?></td>
+        <td><?= number_format($row->price, 2) ?></td>
+        <td>
+            <a class="btn btn-primary" href="/edit/<?= $row->id ?>" role="button">Edit</a>
+            <button type="button" class="btn btn-danger" onclick="post('/delete', {id: <?= $row->id ?>})">Delete</button>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>

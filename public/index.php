@@ -5,11 +5,14 @@ use Common\DbInterface;
 use Common\LayoutMiddleware;
 use DI\ContainerBuilder;
 use FastRoute\RouteCollector;
+use Hotel\Controller\AddAction;
+use Hotel\Controller\DeleteAction;
+use Hotel\Controller\EditAction;
+use Hotel\Controller\IndexAction;
 use Middlewares\FastRoute;
 use Middlewares\RequestHandler;
 use Middlewares\Whoops;
 use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\ResponseInterface;
 use Relay\Relay;
 use Slim\Views\PhpRenderer;
 use Zend\Diactoros\Response;
@@ -29,7 +32,6 @@ $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions([
     DbInterface::class => factory(DbFactory::class),
     PhpRenderer::class => create()->constructor(__DIR__ . '/../templates'),
-    ResponseInterface::class => create(Response::class),
     ResponseFactoryInterface::class => create(ResponseFactory::class),
     LayoutMiddleware::class => autowire(),
 ]);
@@ -38,6 +40,10 @@ $containerBuilder->addDefinitions([
 $container = $containerBuilder->build();
 
 $routes = simpleDispatcher(function (RouteCollector $r) {
+    $r->get('/', IndexAction::class);
+    $r->addRoute(['GET', 'POST'], '/add', AddAction::class);
+    $r->addRoute(['GET', 'POST'], '/edit/{id}', EditAction::class);
+    $r->post('/delete', DeleteAction::class);
 });
 
 $middlewareQueue[] = new Whoops();

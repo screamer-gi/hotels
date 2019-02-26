@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var string $action
+ * @var int $id
+ * @var string[]|null $data
+ * @var string[] $errors
+ */
+?>
+<?php foreach ($errors as $error): ?>
+<div class="alert alert-danger" role="alert">
+    <?= $error ?>
+</div>
+<?php endforeach; ?>
+
+<form action="/<?= $action ?>" method="post">
+
+    <?php if (!empty($id)):?>
+    <input type="hidden" name="id" value="<?= $id ?>">
+    <?php endif; ?>
+
+    <div class="form-group">
+        <label for="dateStart">Start date</label>
+        <input name="date_start" value="<?= htmlspecialchars($data['date_start'] ?? '') ?>" type="date" class="form-control" id="dateStart">
+    </div>
+
+    <div class="form-group">
+        <label for="dateEnd">End date</label>
+        <input name="date_end" value="<?= htmlspecialchars($data['date_end'] ?? '') ?>" type="date" class="form-control" id="dateEnd">
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input name="price" value="<?= htmlspecialchars($data['price'] ?? '') ?>" type="text" class="form-control" id="price">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
