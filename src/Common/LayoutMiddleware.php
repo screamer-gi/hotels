@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Views\PhpRenderer;
+use Zend\Diactoros\Response\JsonResponse;
 
 class LayoutMiddleware implements MiddlewareInterface
 {
@@ -26,6 +27,10 @@ class LayoutMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $handler->handle($request);
+        if ($response instanceof JsonResponse || $response->getStatusCode() != 200) {
+            return $response;
+        }
+
         $layoutResponse = $this->responseFactory->createResponse();
         $this->renderer->render($layoutResponse, 'layout/layout.phtml', ['content' => $response->getBody()]);
         return $response->withBody($layoutResponse->getBody());

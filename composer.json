@@ -13,6 +13,7 @@
         "ext-mbstring": "*",
         "ext-pdo": "*",
         "middlewares/fast-route": "^1.2",
+        "middlewares/payload": "^2.1",
         "middlewares/request-handler": "^1.4",
         "middlewares/whoops": "^1.2",
         "morris/lessql": "^0.3.5",
