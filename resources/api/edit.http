@@ -1,0 +1,12 @@
+PUT http://hotels.local/api/intervals/1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "date_start": "2019-03-14",
+    "date_end": "2019-03-16",
+    "price": 123.45
+}
+
+###

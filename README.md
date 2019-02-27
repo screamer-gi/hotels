@@ -8,7 +8,8 @@ Hotels test task
 - Load dump from `docs/dump.sql` or run migration: `vendor/bin/phinx migrate`
 - Add test data: `vendor/bin/phinx seed:run`
 - Add to `/etc/hosts` row `127.0.0.1 hotels.local`
-- Open `http://hotels.local` in the browser 
+- Open <http://hotels.local> in the browser 
+- View API documentation: <http://hotels.local/apidoc.html> 
 
 ### docker
 
@@ -18,4 +19,4 @@ Hotels test task
   - `docker-compose exec php composer install` 
   - `docker-compose exec php phinx migrate` 
   - `docker-compose exec php phinx seed:run` 
-- Open `http://hotels.local` in the browser 
+- Open <http://hotels.local> in the browser 

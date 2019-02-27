@@ -1,0 +1,133 @@
+openapi: 3.0.0
+servers:
+  - description: Local server
+    url: http://hotels.local/api
+  - description: Demo server
+    url: https://hotels.screamer.kiev.ua/api
+info:
+  version: "1.0.0"
+  title: Hotels test API
+paths:
+  /intervals:
+    post:
+      summary: Create new interval
+      tags:
+        - intervals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntervalItem'
+      responses:
+        201:
+          $ref: '#/components/responses/Created'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+  /intervals/{id}:
+    put:
+      summary: Update interval
+      tags:
+        - intervals
+      parameters:
+        - name: id
+          in: path
+          description: Interval ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntervalItem'
+      responses:
+        204:
+          $ref: '#/components/responses/Updated'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+    delete:
+      summary: Delete interval
+      tags:
+        - intervals
+      parameters:
+        - name: id
+          in: path
+          description: Interval ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          $ref: '#/components/responses/Deleted'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+
+components:
+  schemas:
+    IntervalItem:
+      type: object
+      required:
+        - date_start
+        - date_end
+        - price
+      properties:
+        date_start:
+          type: string
+          format: date
+          example: '2019-03-20'
+        date_end:
+          type: string
+          format: date
+          example: '2019-03-30'
+        price:
+          type: number
+          format: float
+          example: 123.45
+
+  responses:
+    Created:
+      description: Object created
+
+    Updated:
+      description: Object updated
+
+    Deleted:
+      description: Object deleted
+
+    BadRequest:
+      description: Validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+                example:
+                  date_start:
+                    - 'Wrong `date_start` date format'
+                  price:
+                    - '`price` cannot be blank'
+
+    NotFound:
+      description: The specified resource was not found
+
+    ServerError:
+      description: Internal server error

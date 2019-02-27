@@ -1,0 +1,12 @@
+POST http://hotels.local/api/intervals
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "date_start": "2019-03-20",
+    "date_end": "2019-03-21",
+    "price": 456.78
+}
+
+###

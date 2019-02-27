@@ -1,0 +1,5 @@
+DELETE http://hotels.local/api/intervals/8
+Accept: */*
+Cache-Control: no-cache
+
+###
