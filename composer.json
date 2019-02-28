@@ -30,7 +30,15 @@
             "Common\\": "src/Common/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
+    },
     "config": {
         "sort-packages": true
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.5"
     }
 }
