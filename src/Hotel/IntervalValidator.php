@@ -96,7 +96,7 @@ class IntervalValidator
     /**
      * @param string|array $attributes
      */
-    public function filterFloat(string $attributes): void
+    public function filterFloat($attributes): void
     {
         $attributes = (array)$attributes;
         foreach ($attributes as $attribute) {
