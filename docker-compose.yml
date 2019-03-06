@@ -7,6 +7,15 @@ services:
     depends_on:
       - mysql
 
+  test:
+    build: docker/php
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql-test
+    links:
+      - mysql-test:mysql
+
   nginx:
     build: docker/nginx
     ports:
@@ -31,6 +40,19 @@ services:
     ports:
       - "3306:3306"
 
+  mysql-test:
+    image: mysql:5.7
+    volumes:
+      - test-db-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=hotels
+      - MYSQL_ROOT_PASSWORD=hotels
+      - MYSQL_PORT=3306
+      - MYSQL_USER=hotels
+      - MYSQL_PASSWORD=hotels
+    ports:
+      - "3307:3306"
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -41,7 +63,10 @@ services:
     restart: always
     depends_on:
       - mysql
+      - mysql-test
 
 volumes:
   db-data:
+    driver: local
+  test-db-data:
     driver: local
